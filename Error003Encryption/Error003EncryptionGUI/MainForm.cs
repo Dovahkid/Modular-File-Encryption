@@ -61,7 +61,19 @@ namespace Error003EncryptionGUI
 
             foreach (var addon in Addons)
             {
-                addon.FileEncrypt(FilePath, password);
+                if (addon.name.Equals(lstEncryptionTypes.SelectedItem))
+                {
+                    switch (radEncrypt.Checked)
+                    {
+                        case true:
+                            addon.FileEncrypt(FilePath, password);
+                            break;
+
+                        case false:
+                            addon.FileDecrypt(FilePath, password);
+                            break;
+                    }
+                }
             }
         }
     }
